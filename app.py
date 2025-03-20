@@ -11,6 +11,7 @@ with open('scaler.pkl', 'rb') as f:
   scaler = pickle.load(f)
 with open('feature_names.pkl', 'rb') as f:
   feature_names = pickle.load(f)
+  feature_names = [str(name) for name in feature_names]
 
 # App title
 st.title("Diabetic Retinopathy Prediction")
@@ -22,7 +23,7 @@ diastolic_bp = st.number_input("Diastolic Blood Pressure", min_value=0, max_valu
 cholesterol = st.number_input("Cholesterol", min_value=0, max_value=200, value=100)
 
 # Empty DataFrame with the features expected by the model
-input_data = pd.DataFrame(columns=['age', 'systolic_bp', 'diastolic_bp', 'cholesterol'],index=[0]).fillna(0) 
+input_data = pd.DataFrame(columns=['age', 'systolic_bp', 'diastolic_bp', 'cholesterol'],index=[0], dtype=float).fillna(0) 
 
 #Initialize prognosis
 prognosis = None
