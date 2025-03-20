@@ -38,6 +38,7 @@ def predict_prognosis():
 
   # Make prediction
   prognosis = model.predict(input_data_scaled)[0]
+  print("prognosis:", prognosis)
   return prognosis
 
 def print_prognosis(prognosis):
