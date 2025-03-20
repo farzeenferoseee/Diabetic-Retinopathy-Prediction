@@ -32,10 +32,11 @@ input_data = pd.DataFrame(
 prognosis = None
 
 def predict_prognosis():
-  input_data['age'] = age
-  input_data['systolic_bp'] = systolic_bp
-  input_data['diastolic_bp'] = diastolic_bp
-  input_data['cholesterol'] = cholesterol
+  input_data = pd.DataFrame([{
+    'age': float(age),
+    'systolic_bp': float(systolic_bp),
+    'diastolic_bp': float(diastolic_bp),
+    'cholesterol': float(cholesterol)}], columns=feature_names)
 
   #Scale input data
   input_data_scaled = scaler.transform(input_data)
