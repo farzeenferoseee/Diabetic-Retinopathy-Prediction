@@ -24,20 +24,25 @@ cholesterol = st.number_input("Cholesterol", min_value=0, max_value=200, value=1
 # Empty DataFrame with the features expected by the model
 input_data = pd.DataFrame(columns=feature_names, index=[0]).fillna(0)
 
-input_data['age'] = age
-input_data['systolic_bp'] = systolic_bp
-input_data['diastolic_bp'] = diastolic_bp
-input_data['cholesterol'] = cholesterol
+def predict_prognosis():
+  input_data['age'] = age
+  input_data['systolic_bp'] = systolic_bp
+  input_data['diastolic_bp'] = diastolic_bp
+  input_data['cholesterol'] = cholesterol
 
-#Scale input data
-input_data_scaled = scaler.transform(input_data)
+  #Scale input data
+  input_data_scaled = scaler.transform(input_data)
 
-# Make prediction
-prognosis = model.predict(input_data_scaled)[0]
+  # Make prediction
+  prognosis = model.predict(input_data_scaled)[0]
+  return prognosis
 
-if prognosis == 1:
-  st.write("This patient is predicted to have diabetic retinopathy.")
-else:
-  st.write("It is predicted that this passenger does not have diabetic retinopathy.")
+def print_prognosis(prognosis):
+  if prognosis == 1:
+    st.write("This patient is predicted to have diabetic retinopathy.")
+  else:
+    st.write("It is predicted that this passenger does not have diabetic retinopathy.")
 
-
+if st.button("Predict"):
+  predict_prognosis()
+  print_prognosis(prognosis)
