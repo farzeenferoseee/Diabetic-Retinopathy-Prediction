@@ -21,8 +21,6 @@ systolic_bp = st.number_input("Systolic Blood Pressure", min_value=0, max_value=
 diastolic_bp = st.number_input("Diastolic Blood Pressure", min_value=0, max_value=140, value=80)
 cholesterol = st.number_input("Cholesterol", min_value=0, max_value=200, value=100)
 
-prognosis = None
-
 def predict_prognosis():
   # Create a dictionary with the input data
   input_data_dict = {
@@ -42,11 +40,13 @@ def predict_prognosis():
   prognosis = model.predict(input_data_scaled)[0]
   return prognosis
 
-if st.button("Predict"):
-    predict_prognosis()
+def print_prognosis(prognosis):
+  if prognosis == 1:
+    st.write("This patient is predicted to have diabetic retinopathy.")
+  else:
+    st.write("It is predicted that this passenger does not have diabetic retinopathy.")
 
-# Display prediction
-if prognosis == 1:
-  st.write("This patient is predicted to have diabetic retinopathy.")
-else:
-  st.write("It is predicted that this passenger does not have diabetic retinopathy.")
+if st.button("Predict"):
+  predict_prognosis()
+  print_prognosis(prognosis)
+
