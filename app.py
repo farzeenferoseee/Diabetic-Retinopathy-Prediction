@@ -25,8 +25,8 @@ cholesterol = st.number_input("Cholesterol", min_value=0, max_value=200, value=1
 
 # Empty DataFrame with the features expected by the model
 input_data = pd.DataFrame(
-  columns=feature_names,
-  index=[0], dtype=float).fillna(0) 
+  [{'age': age, 'systolic_bp': systolic_bp, 'diastolic_bp': diastolic_bp, 'cholesterol': cholesterol}]
+                          , columns=feature_names)
 
 #Initialize prognosis
 prognosis = None
