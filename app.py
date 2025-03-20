@@ -31,7 +31,7 @@ def predict_prognosis():
   }
 
   # Create the input DataFrame with the correct feature order
-    input_data = pd.DataFrame(input_data_dict, columns=feature_names)
+  input_data = pd.DataFrame(input_data_dict, columns=feature_names)
 
   #Scale input data
   input_data_scaled = scaler.transform(input_data)
@@ -42,7 +42,7 @@ def predict_prognosis():
 
 if st.button("Predict"):
     predict_prognosis()
-    
+
 # Display prediction
 if prognosis == 1:
   st.write("This patient is predicted to have diabetic retinopathy.")
