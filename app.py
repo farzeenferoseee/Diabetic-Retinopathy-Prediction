@@ -50,5 +50,5 @@ def print_prognosis(prognosis):
     st.write("Error in prognosis. Retry. ")
 
 if st.button("Predict"):
-  predict_prognosis()
+  prognosis = predict_prognosis()
   print_prognosis(prognosis)
