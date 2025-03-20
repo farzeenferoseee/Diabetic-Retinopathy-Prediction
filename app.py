@@ -21,6 +21,8 @@ systolic_bp = st.number_input("Systolic Blood Pressure", min_value=0, max_value=
 diastolic_bp = st.number_input("Diastolic Blood Pressure", min_value=0, max_value=140, value=80)
 cholesterol = st.number_input("Cholesterol", min_value=0, max_value=200, value=100)
 
+prognosis = None
+
 def predict_prognosis():
   # Create a dictionary with the input data
   input_data_dict = {
