@@ -11,7 +11,8 @@ with open('scaler.pkl', 'rb') as f:
   scaler = pickle.load(f)
 with open('feature_names.pkl', 'rb') as f:
   feature_names = pickle.load(f)
-  feature_names = [str(name) for name in feature_names]
+  #Convert to list of strings
+  feature_names = list(feature_names.astype(str))
 
 # App title
 st.title("Diabetic Retinopathy Prediction")
