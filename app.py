@@ -41,6 +41,9 @@ def predict_prognosis():
   #Scale input data
   input_data_scaled = scaler.transform(input_data)
 
+  print("Input data", input_data)
+  print("Scaled input data:", input_data_scaled)
+  
   # Make prediction
   prognosis = model.predict(input_data_scaled)[0]
   return prognosis
@@ -56,6 +59,5 @@ def print_prognosis(prognosis):
 if st.button("Predict"):
   prognosis = predict_prognosis()
   print_prognosis(prognosis)
-  print("Input data", input_data)
-  print("Scaled input data:", input_data_scaled)
+  
       
