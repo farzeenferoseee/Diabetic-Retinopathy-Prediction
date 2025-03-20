@@ -56,3 +56,6 @@ def print_prognosis(prognosis):
 if st.button("Predict"):
   prognosis = predict_prognosis()
   print_prognosis(prognosis)
+  print("Input data", input_data)
+  print("Scaled input data:", input_data_scaled)
+      
