@@ -21,13 +21,16 @@ systolic_bp = st.number_input("Systolic Blood Pressure", min_value=0, max_value=
 diastolic_bp = st.number_input("Diastolic Blood Pressure", min_value=0, max_value=140, value=80)
 cholesterol = st.number_input("Cholesterol", min_value=0, max_value=200, value=100)
 
-# Empty DataFrame with the features expected by the model
-input_data = pd.DataFrame([[age, systolic_bp, diastolic_bp, cholesterol]], columns=feature_names, index=[0]).fillna(0) 
+# Create a dictionary with the input data
+input_data_dict = {
+    'Age': [age],
+    'Systolic Blood Pressure': [systolic_bp],
+    'Diastolic Blood Pressure': [diastolic_bp],
+    'Cholesterol': [cholesterol]
+}
 
-input_data['Age'] = age
-input_data['Systolic Blood Pressure'] = systolic_bp
-input_data['Diastolic Blood Pressure'] = diastolic_bp
-input_data['Cholesterol'] = cholesterol
+# Create the input DataFrame with the correct feature order
+input_data = pd.DataFrame(input_data_dict, columns=feature_names)
 
 #Scale input data
 input_data_scaled = scaler.transform(input_data)
