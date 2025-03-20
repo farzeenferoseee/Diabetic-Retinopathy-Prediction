@@ -1,5 +1,4 @@
 streamlit
 pandas
-sklearn.preprocessing
-sklearn.linear_model
+scikit-learn
 pickle
