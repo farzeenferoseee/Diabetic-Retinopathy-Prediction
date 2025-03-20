@@ -24,7 +24,9 @@ diastolic_bp = st.number_input("Diastolic Blood Pressure", min_value=0, max_valu
 cholesterol = st.number_input("Cholesterol", min_value=0, max_value=200, value=100)
 
 # Empty DataFrame with the features expected by the model
-input_data = pd.DataFrame(columns=['age', 'systolic_bp', 'diastolic_bp', 'cholesterol'],index=[0], dtype=float).fillna(0) 
+input_data = pd.DataFrame(
+  columns=feature_names,
+  index=[0], dtype=float).fillna(0) 
 
 #Initialize prognosis
 prognosis = None
@@ -40,7 +42,6 @@ def predict_prognosis():
 
   # Make prediction
   prognosis = model.predict(input_data_scaled)[0]
-  print("prognosis:", prognosis)
   return prognosis
 
 def print_prognosis(prognosis):
