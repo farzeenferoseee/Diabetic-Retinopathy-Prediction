@@ -43,8 +43,10 @@ def predict_prognosis():
 def print_prognosis(prognosis):
   if prognosis == 1:
     st.write("This patient is predicted to have diabetic retinopathy.")
-  else:
+  elif prognosis == 0 :
     st.write("It is predicted that this passenger does not have diabetic retinopathy.")
+  else:
+    st.write("Error in prognosis. Retry. ")
 
 if st.button("Predict"):
   predict_prognosis()
