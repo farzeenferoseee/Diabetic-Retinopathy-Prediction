@@ -28,9 +28,6 @@ input_data = pd.DataFrame(
   [{'age': age, 'systolic_bp': systolic_bp, 'diastolic_bp': diastolic_bp, 'cholesterol': cholesterol}]
                           , columns=feature_names)
 
-#Initialize prognosis
-prognosis = None
-
 def predict_prognosis():
   input_data = pd.DataFrame([{
     'age': float(age),
@@ -41,23 +38,9 @@ def predict_prognosis():
   #Scale input data
   input_data_scaled = scaler.transform(input_data)
 
-  print("Input data", input_data)
-  print("Scaled input data:", input_data_scaled)
-  
   # Make prediction
   prognosis = model.predict(input_data_scaled)[0]
-  return prognosis
-
-def print_prognosis(prognosis):
-  if prognosis == 1:
-    st.write("This patient is predicted to have diabetic retinopathy.")
-  elif prognosis == 0 :
-    st.write("It is predicted that this passenger does not have diabetic retinopathy.")
-  else:
-    st.write("Error in prognosis. Retry. ")
+  return "Positive" if prognosis == 1 else "Negative"
 
 if st.button("Predict"):
   prognosis = predict_prognosis()
-  print_prognosis(prognosis)
-  
-      
