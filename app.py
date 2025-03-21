@@ -9,10 +9,6 @@ with open('log_reg_model.pkl', 'rb') as f:
   model = pickle.load(f)
 with open('scaler.pkl', 'rb') as f:
   scaler = pickle.load(f)
-with open('feature_names.pkl', 'rb') as f:
-  feature_names = pickle.load(f)
-  #Convert to list of strings
-  feature_names = list(feature_names.astype(str))
 
 # App title
 st.title("Diabetic Retinopathy Prediction")
@@ -26,14 +22,14 @@ cholesterol = st.number_input("Cholesterol", min_value=0, max_value=200, value=1
 # Empty DataFrame with the features expected by the model
 input_data = pd.DataFrame(
   [{'age': age, 'systolic_bp': systolic_bp, 'diastolic_bp': diastolic_bp, 'cholesterol': cholesterol}]
-                          , columns=feature_names)
+                          )
 
-def predict_prognosis():
+def predict_prognosis(age, systolic_bp, diastolic_bp, cholesterol):
   input_data = pd.DataFrame([{
     'age': float(age),
     'systolic_bp': float(systolic_bp),
     'diastolic_bp': float(diastolic_bp),
-    'cholesterol': float(cholesterol)}], columns=feature_names)
+    'cholesterol': float(cholesterol)}])
 
   #Scale input data
   input_data_scaled = scaler.transform(input_data)
@@ -43,4 +39,5 @@ def predict_prognosis():
   return "Positive" if prognosis == 1 else "Negative"
 
 if st.button("Predict"):
-  prognosis = predict_prognosis()
+    result = predict_prognosis(age, systolic_bp, diastolic_bp, cholesterol)
+    st.write(f"Prediction: {result}")
